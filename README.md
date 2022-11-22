@@ -27,7 +27,7 @@ The console will perform the following tasks:
   * [pycodestyle (version 2.7.*)](https://pypi.org/project/pycodestyle/)
   * [PEP8](https://pep8.org/)
 
-All the development and testing was runned over an operating system Ubuntu 20.04 LTS using programming language Python 3.8.3. The editors used were VIM 8.1.2269 . Control version using Git 2.25.1.
+All the development and testing was run over an operating system Ubuntu 20.04 LTS using programming language Python 3.8.3. The editors used were VIM 8.1.2269 . Control version using Git 2.25.1.
 
 ## 0x03 Installation
 
