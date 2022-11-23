@@ -5,21 +5,22 @@ class BaseModel defines all common attributes/methods for other classes
 from datetime import datetime
 from uuid import uuid4
 
+
 class BaseModel:
     """A base class for all hbnb models"""
     def __init__(self, id=None, created_at=None, updated_at=None):
         """Instatntiates a new model"""
-        self.id = uuid4().hex
+        self.id = str(uuid4())
         self.created_at = datetime.now()
         self.updated_at = datetime.now()
-    
+
     def __str__(self):
         """Return the print/str representation of the BaseModel instance."""
         class_name = self.__class__.__name__
         return f"[<{class_name}>] (<{self.id}>) <{self.__dict__}>"
 
     def save(self):
-        """Update updated_at with the current datetime.""" 
+        """Update updated_at with the current datetime."""
         self.updated_at = datetime.now()
 
     def to_dict(self):
