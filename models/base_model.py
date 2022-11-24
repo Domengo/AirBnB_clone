@@ -8,16 +8,25 @@ from uuid import uuid4
 
 class BaseModel:
     """A base class for all hbnb models"""
-    def __init__(self, id=None, created_at=None, updated_at=None):
-        """Instatntiates a new model"""
-        self.id = str(uuid4())
-        self.created_at = datetime.now()
-        self.updated_at = datetime.now()
+    def __init__(self, *args, **kwargs):
+        """Instantiates a new model"""
+
+        if kwargs.__len__() != 0:
+            for key, values in kwargs.items():
+                if key == "created_at" or key =="updated_at":
+                    value = datetime.strptime(values, "%Y-%m-%dT%H:%M:%S.%f")
+                    setattr(self, key, value)
+                if key != "__class__":
+                    setattr(self, key, values)
+        else:
+            self.id = str(uuid4())
+            self.created_at = datetime.now()
+            self.updated_at = datetime.now()
 
     def __str__(self):
         """Return the print/str representation of the BaseModel instance."""
         class_name = self.__class__.__name__
-        return f"[<{class_name}>] (<{self.id}>) <{self.__dict__}>"
+        return f"[{class_name}] ({self.id}) {self.__dict__}"
 
     def save(self):
         """Update updated_at with the current datetime."""
