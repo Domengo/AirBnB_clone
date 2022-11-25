@@ -9,15 +9,27 @@ from uuid import uuid4
 class BaseModel:
     """A base class for all hbnb models"""
     def __init__(self, *args, **kwargs):
-        """Instantiates a new model"""
+        """Instantiates a new model if not created and parses in a dictionary 
+            as input to assign the instance attributes to their respective 
+            values when passed in as command line arguments
 
-        tform = "%Y-%m-%dT%H:%M:%S.%f"
+            Example:
+                t = BaseModel(
+                created_at="2017-09-28T21:03:54.052302", 
+                id=56d43177-cc5f-4d6c-a0c1-e167f8c27337"
+                )
+                would create instance t and instantiate self.created_at to 
+                the value of self.__dict__["created_at"], and self.id to 
+                the value of self.__dict__["id"].
+            """
         if kwargs.__len__() != 0:
             for key, value in kwargs.items():
                 if key == "created_at" or key == "updated_at":
-                    self.__dict__[key] = datetime.strptime(value, tform)
-                else:
-                    self.__dict__[key] = value
+                    val = datetime.strptime(value, "%Y-%m-%dT%H:%M:%S.%f")
+                    setattr(self, key, val)
+                    continue
+                if key != "__class__":
+                    setattr(self, key, value)
         else:
             self.id = str(uuid4())
             self.created_at = datetime.now()
