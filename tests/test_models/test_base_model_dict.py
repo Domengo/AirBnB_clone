@@ -30,3 +30,10 @@ class TestBaseModelCreationFromDict(unittest.TestCase):
         """
         self.assertEqual(type(self.base1.created_at), datetime.datetime)
         self.assertEqual(type(self.base1.updated_at), datetime.datetime)
+
+    def test_if_class_is_an_instance_attribute(self):
+        """
+        checks if __class__ is an instance attribute when an instance is created
+        from a dictionary when passed in as kwargs. If it exists there is an error
+        """
+        self.assertNotIn("__class__", self.basedict.__dict__)
