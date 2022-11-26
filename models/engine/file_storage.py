@@ -52,9 +52,9 @@ class FileStorage:
         does nothing
         """
         try:
-            with open(FileStorage.__file_path, "r", encoding="utf-8") as js_f:
-                for key, obj in json.loads(js_f.read()).items():
-                    obj = eval(obj['__class__'])(**obj)
-                    FileStorage.__objects[key] = obj
+            with open(FileStorage.__file_path, "r", encoding="utf-8") as json_file:
+                for key, obj in json.loads(json_file.read()).items():
+                    objects = eval(obj['__class__'])(**obj)
+                    FileStorage.__objects[key] = objects
         except FileNotFoundError:
             pass
