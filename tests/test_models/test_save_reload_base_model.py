@@ -13,8 +13,8 @@ from models.base_model import BaseModel
 
 class TestFileStorage(TestCase):
     """
-    Testing all edge cases when creating an instance and storing the data
-    as JSON file
+    Testing all edge cases when creating an instance
+    and storing the data as JSON file
     """
 
     def setUp(self):
@@ -32,8 +32,8 @@ class TestFileStorage(TestCase):
 
     def test_private_attributes(self):
         """
-        Tests if the attributes __file_path and __objects are private
-        class attributes
+        Tests if the attributes __file_path and __objects
+        are private class attributes
         """
         with self.assertRaises(AttributeError):
             self.file_storage.__file_path
