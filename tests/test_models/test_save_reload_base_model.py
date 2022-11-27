@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """
-Tests if the FileStorage class can create JSON files when an object instance
+Tests if the FileStorage class can
+create JSON files when an object instance
 is created and load the JSON to the dictionary when needed
 """
 
@@ -15,14 +16,17 @@ class TestFileStorage(TestCase):
     Testing all edge cases when creating an instance and storing the data
     as JSON file
     """
-    
+
     def setUp(self):
         """
         Used to initialize instances used within the tests
         """
         self.base = BaseModel().to_dict()
         self.base1 = BaseModel(**self.base)
-        self.base2 = BaseModel(id="ee49c413-023a-4b49-bd28-f2936c95460d", updated_at="2017-09-28T21:08:06.151750", created_at="2017-09-28T21:08:06.151711")
+        self.base2 = BaseModel(
+                id="ee49c413-023a-4b49-bd28-f2936c95460d",
+                updated_at="2017-09-28T21:08:06.151750",
+                created_at="2017-09-28T21:08:06.151711")
         self.file_storage = FileStorage()
         self.file_storage.new(self.base1)
 
@@ -34,4 +38,3 @@ class TestFileStorage(TestCase):
         with self.assertRaises(AttributeError):
             self.file_storage.__file_path
             self.file_storage.__objects
-
