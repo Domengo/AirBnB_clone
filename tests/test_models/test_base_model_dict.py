@@ -2,7 +2,8 @@
 
 """
 Unittests of the implemented
-BaseModel extention to accept dictionaries as input
+BaseModel extention to accept 
+dictionaries as input
 """
 
 
