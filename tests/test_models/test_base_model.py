@@ -24,8 +24,8 @@ class TestBaseModel(TestCase):
 
     def test_instance(self):
         """
-        Testing if the created instances
-        are instances of the BaseModel class
+        Testing if the created instances are instances
+        of the BaseModel class
         """
         self.assertIsInstance(self.base1, BaseModel)
         self.assertIsInstance(self.base2, BaseModel)
