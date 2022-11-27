@@ -51,8 +51,8 @@ class FileStorage:
 
     def reload(self):
         """
-        deserializes __objects if the __file_path exists otherwise
-        does nothing
+        deserializes __objects if the __file_path exists
+        otherwise does nothing
         """
         try:
             with open(
