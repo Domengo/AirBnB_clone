@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """
-A file storing model that saves object instances as a string in a file and converts 
+A file storing model that saves
+object instances as a string in a file and converts
 iIt into Json when used"
 """
 
@@ -8,13 +9,14 @@ iIt into Json when used"
 from models.base_model import BaseModel
 import json
 
+
 class FileStorage:
     """
     Serializes instances created from the BaseModel class to a JSON file and
     deserializes JSON file to instances
     """
 
-    __file_path = "file.json" 
+    __file_path = "file.json"
     __objects = {}
 
     def all(self):
@@ -37,7 +39,7 @@ class FileStorage:
             FileStorage.__objects[key] = obj
 
     def save(self):
-        """serializes __objects to the 
+        """serializes __objects to the
         JSON file (path: __file_path)
         """
         new_dict = {}
@@ -45,14 +47,16 @@ class FileStorage:
             new_dict[key] = value.to_dict()
         with open(FileStorage.__file_path, 'w', encoding="utf-8") as my_file:
             json.dump(new_dict, my_file)
-        
+
     def reload(self):
         """
         deserializes __objects if the __file_path exists otherwise
         does nothing
         """
         try:
-            with open(FileStorage.__file_path, "r", encoding="utf-8") as json_file:
+            with open(
+                    FileStorage.__file_path,
+                    "r", encoding="utf-8") as json_file:
                 for key, obj in json.loads(json_file.read()).items():
                     objects = eval(obj['__class__'])(**obj)
                     FileStorage.__objects[key] = objects
