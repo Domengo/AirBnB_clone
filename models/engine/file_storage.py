@@ -2,7 +2,7 @@
 """
 A file storing model that saves
 object instances as a string in a file and converts
-iIt into Json when used"
+it into Json when used"
 """
 
 
@@ -12,8 +12,9 @@ import json
 
 class FileStorage:
     """
-    Serializes instances created from the BaseModel class to a JSON file and
-    deserializes JSON file to instances
+    Serializes instances created from the BaseModel
+    class to a JSON file and deserializes
+    JSON file to instances
     """
 
     __file_path = "file.json"
