@@ -50,8 +50,8 @@ class BaseModel:
     def to_dict(self):
         """
         Return the dictionary of the BaseModel instance.
-        Includes the key/value pair __class__ representing
-        the class name of the object.
+        Includes the key/value pair __class__
+        representing the class name of the object.
         """
         new_dict = self.__dict__.copy()
         new_dict['__class__'] = self.__class__.__name__
