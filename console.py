@@ -34,6 +34,10 @@ class HBNBCommand(cmd.Cmd):
         """
         return True
 
+    def emptyline(self):
+        """ pass if no command is given """
+        pass
+
     # shortcuts
     do_q = do_quit
 
