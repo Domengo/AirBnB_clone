@@ -7,6 +7,9 @@ Contains the entry point of the command interpreter
 import cmd
 import string
 import sys
+import string,sys
+import models
+from models.base_model import BaseModel
 
 
 class HBNBCommand(cmd.Cmd):
@@ -34,11 +37,22 @@ class HBNBCommand(cmd.Cmd):
         """
         return True
 
+    def do_create(self, arg):
+        """
+        creates a new instance of BaseModel, saves it to the JSOn
+        file and prints the id
+        """
+        temp = BaseModel()
+        storage.save(temp)
+
     def emptyline(self):
-        """ pass if no command is given """
+        """
+        Does nothing when no command is passed to the console or a return character or space
+        is pressed
+        """
         pass
 
-    # shortcuts
+    #shortcuts
     do_q = do_quit
 
     def do_create(self, line):
