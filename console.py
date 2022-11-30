@@ -66,8 +66,8 @@ class HBNBCommand(cmd.Cmd):
             instance = line + "()"
             my_instance = eval(instance)
             my_instance.save()
-            print(instance.id)
-        except FileNotFoundError:
+            print(my_instance.id)
+        except NameError:
             print("** class doesn't exist **")
 
     def do_show(self, line):
