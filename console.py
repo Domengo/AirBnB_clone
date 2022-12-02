@@ -94,19 +94,41 @@ class HBNBCommand(cmd.Cmd):
         except Exception as excp:
             print(excp)
 
-        def do_destroy(self, line):
-            """
-             Deletes an instance base on the class name and id
-             Ex: (hbnb) destroy BaseModel 49faff9a-6318-451f-87b6-910505c55907
-                 (hbnb) show BaseModel 49faff9a-6318-451f-87b6-910505c55907
-                 ** no instance found **
-            """
-            pass
+    def do_destroy(self, line):
+        """
+        Deletes an instance base on the class name and id
+        Ex: (hbnb) destroy BaseModel 49faff9a-6318-451f-87b6-910505c55907
+        (hbnb) show BaseModel 49faff9a-6318-451f-87b6-910505c55907
+        ** no instance found **
+        """
+        try:
+            lst = line.split()
+            if len(lst) == 0:
+                print("** class name missing **")
+                return
+            for key, value in models.storage.all().items():
+                if len(lst) == 2:
+                    if key == f"{lst[0]}.{lst[1]}":
+                        models.storage.all().pop(key)
+                        models.storage.save()
+                        return
+                if len(lst) == 1:
+                    if key.split(".")[0] != lst[0]:
+                        print("** class doesn't exist **")
+                        return
+                    if key.split(".")[0] == lst[0]:
+                        print("** instance id missing **")
+                        return
+            print("** no instance found **")
+            return
+        except Exception as excp:
+            print(excp)
 
     #shortcuts
     do_q = do_quit
     do_c = do_create
     do_s = do_show
+    do_d = do_destroy
 
 if __name__ == "__main__":
     HBNBCommand().cmdloop()
