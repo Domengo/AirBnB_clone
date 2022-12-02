@@ -37,23 +37,12 @@ class HBNBCommand(cmd.Cmd):
         """
         return True
 
-    def do_create(self, arg):
-        """
-        creates a new instance of BaseModel, saves it to the JSOn
-        file and prints the id
-        """
-        temp = BaseModel()
-        storage.save(temp)
-
     def emptyline(self):
         """
         Does nothing when no command is passed to the console or a return character or space
         is pressed
         """
         pass
-
-    #shortcuts
-    do_q = do_quit
 
     def do_create(self, line):
         """creates a new BaseModel instance
@@ -72,10 +61,44 @@ class HBNBCommand(cmd.Cmd):
 
     def do_show(self, line):
 
-        """Prints the string representation of an instance
+        """
+        Prints the string representation of an instance
         based on the class name and id.
-        Ex: $ show BaseModel 1234-1234-1234."""
+        Ex: $ show BaseModel 49faff9a-6318-451f-87b6-910505c55907
+        prints [BaseModel] (49faff9a-6318-451f-87b6-910505c55907) 
+        {
+        'created_at': datetime.datetime(2017, 10, 2, 3, 10, 25, 903293), 
+        'id': '49faff9a-6318-451f-87b6-910505c55907', 
+        'updated_at': datetime.datetime(2017, 10, 2, 3, 10, 25, 903300)
+        }
+        """
+        obj_lst = models.storage.all().items()
+        try:
+            lst = line.split()
+            if len(lst) == 0:
+                print("** class name missing **")
+                return
+            for key, value in obj_lst:
+                if len(lst) == 2:
+                    if key == f"{lst[0]}.{lst[1]}":
+                        print(value)
+                    else:
+                        print("** no instance found **")
+                        return
+                if len(lst) == 1:
+                    if key.split(".")[0] != lst[0]:
+                        print("** class doesn't exist **")
+                        return
+                    if key.split(".")[0] == lst[0]:
+                        print("** instance id missing **")
+                        return
+        except Exception as exp:
+            pass
 
+    #shortcuts
+    do_q = do_quit
+    do_c = do_create
+    do_s = do_show
 
 if __name__ == "__main__":
     HBNBCommand().cmdloop()
