@@ -72,18 +72,15 @@ class HBNBCommand(cmd.Cmd):
         'updated_at': datetime.datetime(2017, 10, 2, 3, 10, 25, 903300)
         }
         """
-        obj_lst = models.storage.all().items()
         try:
             lst = line.split()
             if len(lst) == 0:
                 print("** class name missing **")
                 return
-            for key, value in obj_lst:
+            for key, value in models.storage.all().items():
                 if len(lst) == 2:
                     if key == f"{lst[0]}.{lst[1]}":
                         print(value)
-                    else:
-                        print("** no instance found **")
                         return
                 if len(lst) == 1:
                     if key.split(".")[0] != lst[0]:
@@ -92,7 +89,18 @@ class HBNBCommand(cmd.Cmd):
                     if key.split(".")[0] == lst[0]:
                         print("** instance id missing **")
                         return
-        except Exception as exp:
+            print("** no instance found **")
+            return
+        except Exception as excp:
+            print(excp)
+
+        def do_destroy(self, line):
+            """
+             Deletes an instance base on the class name and id
+             Ex: (hbnb) destroy BaseModel 49faff9a-6318-451f-87b6-910505c55907
+                 (hbnb) show BaseModel 49faff9a-6318-451f-87b6-910505c55907
+                 ** no instance found **
+            """
             pass
 
     #shortcuts
