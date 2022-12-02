@@ -124,6 +124,37 @@ class HBNBCommand(cmd.Cmd):
         except Exception as excp:
             print(excp)
 
+    def do_all(self, line):
+        """
+        Prints all the string representation of all instances based 
+        or not on the class name
+        Ex: (hbnb) all BaseModel
+            ["[BaseModel] (2dd6ef5c-467c-4f82-9521-a772ea7d84e9) 
+            {
+            'id': '2dd6ef5c-467c-4f82-9521-a772ea7d84e9', 
+            'created_at': datetime.datetime(2017, 10, 2, 3, 11, 23, 639717), 
+            'updated_at': datetime.datetime(2017, 10, 2, 3, 11, 23, 639724)
+            }",
+            "[BaseModel] (49faff9a-6318-451f-87b6-910505c55907) 
+            {
+            'id': '49faff9a-6318-451f-87b6-910505c55907', 
+            'created_at': datetime.datetime(2017, 10, 2, 3, 10, 25, 903293), 
+            'updated_at': datetime.datetime(2017, 10, 2, 3, 11, 3, 49401)
+            }
+            "]
+        """
+        lst = line.split()
+        for key, value in models.storage.all().items():
+            if len(lst) == 0:
+                print(value)
+                continue
+            if len(lst) == 1:
+                if key.split(".")[0] != lst[0]:
+                    print("** class doesn't exist **")
+                    return
+                if key.split(".")[0] == lst[0]:
+                    print(value)
+
     #shortcuts
     do_q = do_quit
     do_c = do_create

@@ -1,10 +1,4 @@
 {
-    "BaseModel.1874f4a1-e114-4d5e-8bb1-d1c578cb1d46": {
-        "id": "1874f4a1-e114-4d5e-8bb1-d1c578cb1d46",
-        "created_at": "2022-12-02T14:34:23.945938",
-        "updated_at": "2022-12-02T14:34:23.945969",
-        "__class__": "BaseModel"
-    },
     "BaseModel.1f198b62-0cd2-4133-ada5-4e858918c27a": {
         "id": "1f198b62-0cd2-4133-ada5-4e858918c27a",
         "created_at": "2022-12-02T14:34:59.365721",
