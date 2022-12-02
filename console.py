@@ -111,6 +111,7 @@ class HBNBCommand(cmd.Cmd):
                     if key == f"{lst[0]}.{lst[1]}":
                         models.storage.all().pop(key)
                         models.storage.save()
+                        models.storage.reload()
                         return
                 if len(lst) == 1:
                     if key.split(".")[0] != lst[0]:
@@ -144,22 +145,64 @@ class HBNBCommand(cmd.Cmd):
             "]
         """
         lst = line.split()
-        for key, value in models.storage.all().items():
-            if len(lst) == 0:
-                print(value)
-                continue
-            if len(lst) == 1:
-                if key.split(".")[0] != lst[0]:
-                    print("** class doesn't exist **")
-                    return
-                if key.split(".")[0] == lst[0]:
+        try:
+            for key, value in models.storage.all().items():
+                if len(lst) == 0:
                     print(value)
+                    continue
+                if len(lst) == 1:
+                    if key.split(".")[0] != lst[0]:
+                        print("** class doesn't exist **")
+                        return
+                    if key.split(".")[0] == lst[0]:
+                        print(value)
+        except Exception as excp:
+            print(excp)
+
+    def do_update(self, args):
+        """
+        Updates an instance based on the class name and id by adding or updating attributes
+        Usage: update <class name> <id> <attribute name> "<attribute value>"
+        """
+        arg = args.split()
+        sw = 0
+        if arg[0] not in [key.split(".")[0] for key, value in models.storage.all().items()]:
+            print("** class name missing **")
+            return
+        if len(arg) < 1:
+            print("** class name missing **")
+        elif len(arg) < 2:
+            print("** instance id missing **")
+        elif len(arg) < 3:
+            print("** attribute name missing **")
+        elif len(arg) < 4:
+            print("** value missing **")
+        else:
+            in_key = (arg[0] + "." + arg[1])
+            for key, obj in models.storage.all().items():
+                if key == in_key:
+                    idx_arg = len(arg[0]) + len(arg[1]) + len(arg[2]) + 3
+                    value = args[idx_arg:]
+                    if args[idx_arg] == "\"":
+                        idx_arg += 1
+                        value = args[idx_arg:-1]
+                    if hasattr(obj, arg[2]):
+                        value = type(getattr(obj, arg[2]))(args[idx_arg:])
+                    setattr(obj, arg[2], value)
+                    sw = 1
+                    models.storage.save()
+            if sw == 0:
+                print("** no instance found **")
+                return -1
+
+
 
     #shortcuts
     do_q = do_quit
     do_c = do_create
     do_s = do_show
     do_d = do_destroy
+    do_u = do_update
 
 if __name__ == "__main__":
     HBNBCommand().cmdloop()
