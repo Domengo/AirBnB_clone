@@ -98,7 +98,7 @@ class HBNBCommand(cmd.Cmd):
         """
         Deletes an instance base on the class name and id
         Ex: (hbnb) destroy BaseModel 49faff9a-6318-451f-87b6-910505c55907
-        (hbnb) show BaseModel 49faff9a-6318-451f-87b6-910505c55907
+            (hbnb) show BaseModel 49faff9a-6318-451f-87b6-910505c55907
         ** no instance found **
         """
         try:
