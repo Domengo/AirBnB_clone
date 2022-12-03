@@ -3,7 +3,7 @@
         "id": "1f198b62-0cd2-4133-ada5-4e858918c27a",
         "created_at": "2022-12-02T14:34:59.365721",
         "updated_at": "2022-12-02T14:34:59.365746",
-        "name": "Bradley\"",
+        "name": "Brad",
         "__class__": "BaseModel"
     },
     "BaseModel.ff227ba9-8f0c-491e-8b64-beb895bd136d": {
@@ -11,5 +11,40 @@
         "created_at": "2022-12-02T14:39:41.097267",
         "updated_at": "2022-12-02T14:39:41.097299",
         "__class__": "BaseModel"
+    },
+    "BaseModel.869c86d5-72e3-4465-a312-af9d9f46db2a": {
+        "id": "869c86d5-72e3-4465-a312-af9d9f46db2a",
+        "created_at": "2022-12-03T16:01:30.595632",
+        "updated_at": "2022-12-03T16:01:30.595705",
+        "name": "My_First_Model",
+        "my_number": 89,
+        "__class__": "BaseModel"
+    },
+    "BaseModel.aca07fe0-5b2b-4d5b-8b51-8ea25e9c7f16": {
+        "id": "aca07fe0-5b2b-4d5b-8b51-8ea25e9c7f16",
+        "created_at": "2022-12-03T16:02:21.233863",
+        "updated_at": "2022-12-03T16:02:21.233912",
+        "name": "My_First_Model",
+        "my_number": 89,
+        "__class__": "BaseModel"
+    },
+    "BaseModel.a6e32bbb-60f1-4719-88b2-8044fe26d901": {
+        "id": "a6e32bbb-60f1-4719-88b2-8044fe26d901",
+        "created_at": "2022-12-03T16:15:59.728561",
+        "updated_at": "2022-12-03T16:15:59.728616",
+        "__class__": "BaseModel"
+    },
+    "State.1f33eb56-ba9f-4b63-b5b0-0edbca85c8c4": {
+        "id": "1f33eb56-ba9f-4b63-b5b0-0edbca85c8c4",
+        "created_at": "2022-12-03T16:17:37.883799",
+        "updated_at": "2022-12-03T16:17:37.883851",
+        "name": "Ohio\"",
+        "__class__": "State"
+    },
+    "Amenity.0b78fe37-90e5-435b-9970-40b013c9eb4f": {
+        "id": "0b78fe37-90e5-435b-9970-40b013c9eb4f",
+        "created_at": "2022-12-03T16:18:30.298948",
+        "updated_at": "2022-12-03T16:18:30.299180",
+        "__class__": "Amenity"
     }
 }

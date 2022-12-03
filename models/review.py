@@ -5,7 +5,7 @@ All the database modeling for the review class will be stored here
 
 
 
-from base_model import BaseModel
+from models.base_model import BaseModel
 
 
 

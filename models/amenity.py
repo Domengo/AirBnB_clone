@@ -5,7 +5,7 @@ All the amenities found on the hbnb
 
 
 
-from base_model import BaseModel
+from models.base_model import BaseModel
 
 
 

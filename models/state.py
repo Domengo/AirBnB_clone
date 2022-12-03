@@ -4,7 +4,7 @@ Contains the info about the state of the listing
 """
 
 
-from base_model import BaseModel
+from models.base_model import BaseModel
 
 
 

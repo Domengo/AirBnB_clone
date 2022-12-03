@@ -4,7 +4,7 @@ Contains all the attributes of the city class
 """
 
 
-from base_model import BaseModel
+from models.base_model import BaseModel
 
 
 

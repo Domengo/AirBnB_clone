@@ -4,7 +4,7 @@ All the attributes required to model out the place class
 """
 
 
-from base_model import BaseModel
+from models.base_model import BaseModel
 
 
 

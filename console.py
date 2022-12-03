@@ -10,6 +10,12 @@ import sys
 import string,sys
 import models
 from models.base_model import BaseModel
+from models.user import User
+from models.place import Place
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+from models.review import Review
 
 
 class HBNBCommand(cmd.Cmd):
@@ -107,11 +113,11 @@ class HBNBCommand(cmd.Cmd):
                 print("** class name missing **")
                 return
             for key, value in models.storage.all().items():
+                print(key.split(".")[0])
                 if len(lst) == 2:
                     if key == f"{lst[0]}.{lst[1]}":
                         models.storage.all().pop(key)
                         models.storage.save()
-                        models.storage.reload()
                         return
                 if len(lst) == 1:
                     if key.split(".")[0] != lst[0]:
@@ -151,11 +157,12 @@ class HBNBCommand(cmd.Cmd):
                     print(value)
                     continue
                 if len(lst) == 1:
-                    if key.split(".")[0] != lst[0]:
-                        print("** class doesn't exist **")
-                        return
                     if key.split(".")[0] == lst[0]:
                         print(value)
+                        return
+            print("** class doesn't exist **")
+            return
+
         except Exception as excp:
             print(excp)
 
@@ -165,36 +172,37 @@ class HBNBCommand(cmd.Cmd):
         Usage: update <class name> <id> <attribute name> "<attribute value>"
         """
         arg = args.split()
-        sw = 0
-        if arg[0] not in [key.split(".")[0] for key, value in models.storage.all().items()]:
-            print("** class name missing **")
+        try:
+            new_obj = models.storage.all()
+            if len(arg) == 0:
+                print("** class name missing **")
+                return
+            for key, value in models.storage.all().items():
+                if len(arg) >= 2:
+                    if len(arg) >= 4:
+                        if key == f"{arg[0]}.{arg[1]}":
+                            new_obj[key].__dict__[arg[2]] = arg[3].strip('"')
+                            models.storage.save()
+                            return
+                    else:
+                        if arg[2]:
+                            print("** value missing **")
+                            return
+                        if arg[1]:
+                            print("** attribute name missing **")
+                            return       
+                if len(arg) == 1:
+                    if key.split(".")[0] != arg[0]:
+                        print("** class doesn't exist **")
+                        return
+                    if key.split(".")[0] == arg[0]:
+                        print("** instance id missing **")
+                        return
+            print("** no instance found **")
             return
-        if len(arg) < 1:
-            print("** class name missing **")
-        elif len(arg) < 2:
-            print("** instance id missing **")
-        elif len(arg) < 3:
-            print("** attribute name missing **")
-        elif len(arg) < 4:
-            print("** value missing **")
-        else:
-            in_key = (arg[0] + "." + arg[1])
-            for key, obj in models.storage.all().items():
-                if key == in_key:
-                    idx_arg = len(arg[0]) + len(arg[1]) + len(arg[2]) + 3
-                    value = args[idx_arg:]
-                    if args[idx_arg] == "\"":
-                        idx_arg += 1
-                        value = args[idx_arg:-1]
-                    if hasattr(obj, arg[2]):
-                        value = type(getattr(obj, arg[2]))(args[idx_arg:])
-                    setattr(obj, arg[2], value)
-                    sw = 1
-                    models.storage.save()
-            if sw == 0:
-                print("** no instance found **")
-                return -1
 
+        except Exception as excp:
+            print(excp)
 
 
     #shortcuts
