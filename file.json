@@ -46,5 +46,11 @@
         "created_at": "2022-12-03T16:18:30.298948",
         "updated_at": "2022-12-03T16:18:30.299180",
         "__class__": "Amenity"
+    },
+    "BaseModel.72a0fbcc-49d9-4d00-ae95-3cee312a1542": {
+        "id": "72a0fbcc-49d9-4d00-ae95-3cee312a1542",
+        "created_at": "2022-12-06T15:08:24.345955",
+        "updated_at": "2022-12-06T15:08:24.345955",
+        "__class__": "BaseModel"
     }
 }
